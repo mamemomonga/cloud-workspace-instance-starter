@@ -1,4 +1,4 @@
-# cloud-instance-starter
+# cloud-workspace-instance-starter
 
 EC2, GCEを起動してsshfsでホームディレクトリをマウント、tmuxを起動し、tmuxをぬけるとsshfsをアンマウントしてインスタンスを終了するスクリプ
 ト
