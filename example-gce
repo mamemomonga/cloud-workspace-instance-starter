@@ -1,0 +1,38 @@
+#!/bin/bash
+set -eu
+
+# ----------------------------------------------------------
+# 設定 GCP GCE
+# ----------------------------------------------------------
+
+TYPE="GCE"
+
+# gcloudで使用するプロファイル
+#`gcloud config configurations` で確認できる
+# https://cloud.google.com/sdk/gcloud/reference/topic/configurations
+export CLOUDSDK_ACTIVE_CONFIG_NAME='my-profile-191213'
+
+# インスタンス名
+INSTANCE_NAME="my-instance-1"
+
+# ゾーン
+ZONE="asia-northeast1-b"
+
+# ユーザ名
+SSH_USERNAME=myname
+
+# SSH用 user@host を設定(user@host)
+set_ssh_con() { SSH_CON="$SSH_USERNAME@$INSTANCE_PUBLIC_IPADDR" }
+
+# マウントするホームディレクトリ
+MOUNT_HOMEDIR=/home/$SSH_USERNAME
+
+# ----------------------------------------------------------
+# 実行
+# ----------------------------------------------------------
+# 自分自身のいるパスを得る 
+BASEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# cloud-instance-starter.sh を読み込む(フルパス)
+source "$BASEDIR/cloud-instance-starter.sh"
+run $@
